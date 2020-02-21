@@ -36,8 +36,8 @@ Things you may want to cover:
 ##  users_groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
 ###  Association
 - belongs_to :user
 - belongs_to :group
@@ -47,8 +47,8 @@ Things you may want to cover:
 |------|----|-------|
 |image|string|
 |text|text|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
 ###  Association
 - belongs_to :group
 - belongs_to :user
