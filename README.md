@@ -12,6 +12,46 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+#  Chatspace DB設計
+##  usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+###  Association
+- has_many :users_groups
+- has_many  :groups,  through:  :users_groups
+- has_many :posts
+
+##  groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+###  Association
+- has_many :users_groups
+- has_many  :users,  through:  :users_groups
+- has_many :posts
+
+##  users_groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
+###  Association
+- belongs_to :user
+- belongs_to :group
+
+##  postsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|
+|text|text|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
+###  Association
+- belongs_to :group
+- belongs_to :user
 
 * Database initialization
 
