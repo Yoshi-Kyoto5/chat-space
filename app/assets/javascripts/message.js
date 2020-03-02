@@ -57,8 +57,8 @@ $(function(){
       $('.message').animate({scrollTop: $('.message')[0].scrollHeight});
       $('form')[0].reset();
      })
-     .fail({
-       alert('メッセージ送信に失敗しました');
+     .fail(function(){
+      alert("送信できませんでした。");
      })
      .always(function(){
       $('.submit-btn').prop('disabled', false);
