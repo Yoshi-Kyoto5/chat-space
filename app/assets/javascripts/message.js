@@ -1,57 +1,59 @@
 $(function(){
       function buildHTML(message){
-        if ( message.image ) {
+        if ( message.content && message.image ) {
           var html =
-          `<div class="message" data-message-id="${message.id}">` +
-              `<div class="message_upper-info">` +
-                `<div class="message__upper-info__talker">` +
-                  message.user_name +
-                `</div>` +
-                `<div class="message__upper-info__date">` +
-                  message.created_at +
-                `</div>` +
-              `</div>` +
-              `<div class="message__text">` +
-                `<p class="lower-message__content">` +
-                  message.content +
-                `</p>` +
-              `<img src="` + message.image + `"class="lower-message__image" >` +
-              `</div>` +
-          `</div>`
+          `<div class="message" data-message-id=${message.id}>
+              <div class="message__upper-info">
+                <div class="message__upper-info__talker">
+                  ${message.user_name}
+                </div>
+                <div class="message__upper-info__date">
+                  ${message.created_at}
+                </div>
+              </div>
+              <div class="message__text">
+                <p class="lower-message__content">
+                  ${message.content}
+                </p>
+              <img src=${message.image} class="lower-message__image" >
+              </div>
+          </div>`
+          return html;
         } else if (message.content) {
           var html =
-          `<div class="message"  data-message-id="${message.id}">` +
-              `<div class="message_upper-info">` +
-                `<div class="message__upper-info__talker">` +
-                  message.user_name +
-                `</div>` +
-                `<div class="message__upper-info__date">` +
-                  message.created_at +
-                `</div>` +
-              `</div>` +
-              `<div class="message__text">` +
-                `<p class="lower-message__content">` +
-                  message.content +
-                `</p>` +
-              `</div>` +
-            `</div>`
+          `<div class="message"  data-message-id="${message.id}">
+              <div class="message__upper-info">
+                <div class="message__upper-info__talker">
+                  ${message.user_name}
+                </div>
+                <div class="message__upper-info__date">
+                  ${message.created_at}
+                </div>
+              </div>
+              <div class="message__text">
+                <p class="lower-message__content">
+                  ${message.content}
+                </p>
+              </div>
+            </div>`
+            return html;
         } else if (message.image) {
           var html =
-          `<div class="message"  data-message-id="${message.id}">` +
-              `<div class="message_upper-info">` +
-                `<div class="message__upper-info__talker">` +
-                  message.user_name +
-                `</div>` +
-                 `<div class="message__upper-info__date">` +
-                  message.created_at +
-                `</div>` +
-               `</div>` +
-              `</div>` +
-              `<img src="` + message.image + `"class="lower-message__image" >` +
-              `</div>` +
-           `</div>`
+          `<div class="message"  data-message-id="${message.id}">
+              <div class="message__upper-info">
+                <div class="message__upper-info__talker">
+                  ${message.user_name}
+                </div>
+                 <div class="message__upper-info__date">
+                  ${message.created_at}
+                </div>
+               </div>
+              </div>
+              <img src=${message.image} class="lower-message__image" >
+              </div>
+           </div>`
+           return html;
         };
-        return html;
       };
       
   $('#new_message').on('submit', function(e){
@@ -68,8 +70,8 @@ $(function(){
     })
      .done(function(data){
       var html = buildHTML(data);
-      $('.messages').append(html);
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+      $('.chat-main').append(html);
+      $('.chat-main').animate({scrollTop: $('.chat-main')[0].scrollHeight});
       $('form')[0].reset();
      })
      .fail(function(){
@@ -99,8 +101,8 @@ $(function(){
           insertHTML += buildHTML(message)
         });
         //メッセージが入ったHTMLに、入れ物ごと追加
-        $('.messages').append(insertHTML);
-        $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+        $('.chat-main').append(insertHTML);
+        $('.chat-main').animate({ scrollTop: $('.chat-main')[0].scrollHeight});
       }
     })
     .fail(function() {
